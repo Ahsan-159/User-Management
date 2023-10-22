@@ -28,8 +28,22 @@ class userController extends Controller
         
         return redirect('/user-registration');
 
+        //echo "<pre>";
+        //print_r($request->all());
+    }
+    public function Users(){
 
-        echo "<pre>";
-        print_r($request->all());
+        $users = user::all();  /// user k model ma users table ka jitna b data ha wo $users ma ly ao
+        $all_users = compact('users');
+        return view('/users')->with($all_users);
+    }
+    public function delete($user_id){
+        
+            // $user_id = user::find($user_id);
+            $post = user::Where('user_id',$user_id);
+            if(!is_null($post)){
+                $post->delete();
+            }
+            return redirect('users');
     }
 }
