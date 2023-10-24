@@ -5,6 +5,10 @@
 @section('main-content')
 <div class="row mt-2">
     <div class="col-md-8 offset-md-2">
+            @if(!empty($msg))
+            {!! $msg !!}
+            @endif
+         
     
         <div class="card">
             <div class="card-header bg-white">
@@ -43,9 +47,20 @@
                         <div class="form-group">
                           <label>Confirm Password</label>
                           <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
-                          <small class="form-text text-danger">
-                        
+                          
                         </div>
+                        <div class="form-group">
+                            <label>User Status:</label>
+                            <select class="form-control" id="" name="status">
+                              <option value="1">Active</option>
+                              <option value="0">Inactive</option>
+                            </select>
+                            <small class="form-text text-danger">
+                                @error('status')
+                                    {{ $message }}
+                                @enderror
+                            </small>
+                          </div>
                         
                     <button type="submit" class="btn btn-primary float-right" name="Register">Submit</button>
                 </form>
